@@ -108,6 +108,30 @@
         "hungry"
       ],
       "id": "10"
+    },
+    {
+      "name": "Flynn",
+      "species": "Greyhound",
+      "diet": "carnivore",
+      "personalityTraits": [
+        "zany",
+        "anxious",
+        "loving",
+        "goofy"
+      ],
+      "id": "11"
+    },
+    {
+      "name": "Flynn",
+      "species": "Greyhound",
+      "diet": "carnivore",
+      "personalityTraits": [
+        "zany",
+        "anxious",
+        "loving",
+        "goofy"
+      ],
+      "id": "12"
     }
   ]
 }
