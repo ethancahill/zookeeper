@@ -9,6 +9,9 @@ app.use(express.urlencoded({ extended: true}));
 // parse incoming JSON data
 app.use(express.json());
 
+// instructs the server to make certain files readily available and to not gate it behind a server endpoint.
+app.use(express.static('public'));
+
 function filterByQuery(query, animalsArray) {
     let presonalityTraitsArray = []
     let filteredResults = animalsArray;
@@ -73,7 +76,9 @@ function validateAnimal(animal) {
     if (!animal.diet || typeof animal.diet !== 'string'){
         return false
     }
-    if (!animal.personalityTraits || !Array.isArray(animal.personalityTraits))
+    if (!animal.personalityTraits || !Array.isArray(animal.personalityTraits)) {
+        return false
+    }
 };
 
 app.get('/api/animals', (req, res) => {
@@ -107,6 +112,22 @@ app.post('/api/animals', (req, res) => {
     }
     res.json(req.body);
 });
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+  });
+
+  app.get('/animals', (req, res) => {
+      res.sendFile(path.join(__dirname, './public/animals.html'));
+  })
+
+  app.get('/zoopkeepers', (req, res) => {
+      res.sendFile(path.join(__dirname, './public/zookeepers.html'))
+  })
+
+  app.get('*', (req, res) => {
+      res.sendFile(path.join(__dirname, './public/index.html'));
+  });
 
 app.listen(PORT, () => {
     console.log(`API server now on port ${PORT}!`);
